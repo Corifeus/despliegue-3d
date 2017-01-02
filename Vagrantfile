@@ -15,7 +15,12 @@ Vagrant.configure("2") do |config|
   config.vm.box = "juanmibox"
   config.vm.hostname = "maquinaJuanmi"
   config.vm.network "forwarded_port", guest: 80, host: 8080
+ config.vm.network "forwarded_port", guest: 3306, host: 3309
   config.vm.provision "shell", path: "provision.sh"
+
+  config.vm.synced_folder "C:/tools/cygwin/home/Federico/prueba4", "/vagrant", disabled: true
+  config.vm.synced_folder "C:/tools/cygwin/home/Federico/prueba4/proyectos", "/home/proyectos"
+  config.vm.synced_folder "C:/tools/cygwin/home/Federico/prueba4/conf", "/home/conf"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -29,7 +34,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
